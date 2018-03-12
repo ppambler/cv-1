@@ -110,43 +110,94 @@
             </footer>
         </div>
 
-        <a class="button" href="#">下载 PDF 简历</a>
-
-        <p>
+        <p class="downloadResume-wrapper">
+            <a class="downloadResume" href="./cv.pdf" download target="_blank">下载 PDF 简历</a>
+        </p>
+        <p class="selfIntroduction">
             唐小桃，初级前端工程师
-            <br>
+            <br> 技能：前端开发
         </p>
 
     </main>
     <!-- 另开一个章节，前面有了主要内容 -->
-    <section>
+    <section class="skills">
         <!-- 这是个副标题，前面已经有了h1了 -->
         <h2>技能</h2>
-        <ol>
+        <ol class="clearfix">
             <!-- 特殊字符需要转义，多写几个字符很不爽 -->
-            <li>HTML 5 &amp; CSS 3</li>
-            <li>JavaScript</li>
-            <li>jQuery</li>
-            <li>Vue</li>
-            <li>React</li>
-            <li>HTTP</li>
+            <li>
+                <h3>HTML 5 &amp; CSS 3</h3>
+                <div class="progressBar">
+                    <div class="progress" style="width:30%"></div>
+                </div>
+            </li>
+            <li>
+                <h3>JavaScript</h3>
+                <div class="progressBar">
+                    <div class="progress" style="width:30%"></div>
+                </div>
+            </li>
+            <li>
+                <h3>jQuery</h3>
+                <div class="progressBar">
+                    <div class="progress" style="width:40%"></div>
+                </div>
+            </li>
+            <li>
+                <h3>Vue</h3>
+                <div class="progressBar">
+                    <div class="progress" style="width:10%"></div>
+                </div>
+            </li>
+            <li>
+                <h3>React</h3>
+                <div class="progressBar">
+                    <div class="progress" style="width:10%"></div>
+                </div>
+            </li>
+            <li>
+                <h3>HTTP</h3>
+                <div class="progressBar">
+                    <div class="progress" style="width:30%"></div>
+                </div>
+            </li>
         </ol>
     </section>
 
-    <section>
+    <section class="portfolio">
         <h2>作品集</h2>
         <nav>
-            <ol>
-                <li>所有</li>
-                <li>框架</li>
-                <li>原生 JS&amp;CSS</li>
+            <ol class="clearfix">
+                <li id="portfolio1">所有</li>
+                <li id="portfolio2">框架</li>
+                <li id="portfolio3">原生 JS&amp;CSS</li>
             </ol>
+            <div id="portfolioBar" class="bar state-1">
+                <div class="bar-inner"></div>
+            </div>
         </nav>
+        <script>
+            portfolio1.onclick = function () {
+                portfolioBar.className = 'bar state-1'
+            }
+            portfolio2.onclick = function () {
+                portfolioBar.className = 'bar state-2'
+            }
+            portfolio3.onclick = function () {
+                portfolioBar.className = 'bar state-3'
+            }
+        </script>
         <!-- 这个是做第一页的，针对于所有 -->
-        <div class="jobs">
-            <div class="big"></div>
-            <div class="small"></div>
-            <div class="small"></div>
+        <div class="works" style="height: 576px;">
+            <div class="big" style="top: 0; left: 0;">
+                <img src="img/1.jpg" alt="作品1">
+            </div>
+            <div class="small" style="top: 0; left: 645px;">
+                <img src="img/2.jpg" alt="作品2">
+            </div>
+            <div class="small" style="top: 298px; left: 645px;">
+                <img src="img/3.jpg" alt="作品3">
+            </div>
         </div>
     </section>
 </body>

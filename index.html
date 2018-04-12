@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>唐小桃的个人简历</title>
-    <link rel="stylesheet" href="a.css">
+    <link rel="stylesheet" href="loading.css">
+    <link rel="stylesheet" href="main.css">
     <script src="//at.alicdn.com/t/font_586044_hnash3ry74dyrpb9.js"></script>
     <style type="text/css">
         .icon {
@@ -16,11 +17,31 @@
             fill: currentColor;
             overflow: hidden;
         }
+        .site-welcome {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #888;
+            z-index: 1;
+            justify-content: center;
+            align-content: center;
+        }
+        .site-welcome .active {
+            display: flex;
+        }
     </style>
 
 </head>
 
 <body>
+    <!-- 加载动画,把div浮在所有内容的上部，默认展示出来，即active -->
+    <div id="siteWelcome" class="site-welcome active">
+        <div class="loading"></div>
+    </div>
+    
     <!-- topNavBar-start -->
     <div class="topNavBar">
         <div class="topNavBar-inner clearfix">
@@ -200,6 +221,15 @@
             </div>
         </div>
     </section>
+
+    <script>
+        // 一旦上方标签加载完毕，就执行此段JSdemo,这段demo,跟在控制台写的没啥区别
+        // 根据元素id,注意这是个hash,通过公用属性，即可完成对文档的某个元素的操作
+        // 添加延时：3s后才取消加载动画
+        setTimeout(function() {
+            siteWelcome.classList.remove('active')
+        },3000)
+    </script>
 </body>
 
 </html>

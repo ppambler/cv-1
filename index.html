@@ -17,6 +17,7 @@
             fill: currentColor;
             overflow: hidden;
         }
+
         .site-welcome {
             display: none;
             position: fixed;
@@ -29,6 +30,7 @@
             justify-content: center;
             align-items: center;
         }
+
         .site-welcome.active {
             display: flex;
         }
@@ -41,16 +43,16 @@
     <div id="siteWelcome" class="site-welcome active">
         <div class="loading"></div>
     </div>
-    
+
     <!-- topNavBar-start -->
-    <div class="topNavBar">
+    <div id="topNavBar" class="topNavBar">
         <div class="topNavBar-inner clearfix">
             <a href="#" class="logo" alt='logo'>
                 <span class="rs">RS</span>
                 <span class="card">card</span>
             </a>
 
-            <nav>
+            <nav class="menu">
                 <ul class="clearfix">
                     <li>
                         <a href="#">关于</a>
@@ -60,9 +62,20 @@
                     </li>
                     <li>
                         <a href="#">作品</a>
+                        <!-- 添加菜单，不是在a里面 -->
+                        <ul class="submenu">
+                            <li>作品1</li>
+                            <li>作品2</li>
+                            <li>作品3</li>
+                        </ul>
                     </li>
                     <li>
                         <a href="#">博客</a>
+                        <ul class="submenu">
+                            <li>博客1</li>
+                            <li>博客2</li>
+                            <li>博客3</li>
+                        </ul>
                     </li>
                     <li>
                         <a href="#">日历</a>
@@ -226,9 +239,29 @@
         // 一旦上方标签加载完毕，就执行此段JSdemo,这段demo,跟在控制台写的没啥区别
         // 根据元素id,注意这是个hash,通过公用属性，即可完成对文档的某个元素的操作
         // 添加延时：3s后才取消加载动画
-        setTimeout(function() {
+        setTimeout(function () {
             siteWelcome.classList.remove('active')
-        },3000)
+        }, 3000)
+
+        // 完成导航条的特效：
+        window.onscroll = function (TTT) {
+            if (window.scrollY > 0) {
+                topNavBar.classList.add('sticky')
+            } else {
+                topNavBar.classList.remove('sticky')
+            }
+        }
+
+        let liTags = document.querySelectorAll('nav.menu > ul > li')
+        for (let i = 0; i < liTags.length; i++) {
+            liTags[i].onmouseenter = function (x) {
+                x.currentTarget.classList.add('active')
+            }
+            liTags[i].onmouseleave = function (x) {
+                x.currentTarget.classList.remove('active')
+            }
+        }
+
     </script>
 </body>
 

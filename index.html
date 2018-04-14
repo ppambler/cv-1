@@ -55,13 +55,13 @@
             <nav class="menu">
                 <ul class="clearfix">
                     <li>
-                        <a href="#">关于</a>
+                        <a href="#siteAbout">关于</a>
                     </li>
                     <li>
-                        <a href="#">技能</a>
+                        <a href="#siteSkills">技能</a>
                     </li>
                     <li>
-                        <a href="#">作品</a>
+                        <a href="#siteWorks">作品</a>
                         <!-- 添加菜单，不是在a里面 -->
                         <ul class="submenu">
                             <li>作品1</li>
@@ -95,7 +95,7 @@
         <div class="mask"></div>
     </div>
     <main>
-        <div class="userCard">
+        <div id='siteAbout' class="userCard">
             <div class="pictureAndText clearfix">
                 <div class="picture">
                     <img src="img/avatar.jpg" width="299" height="347" alt="头像">
@@ -154,7 +154,7 @@
 
     </main>
     <!-- 另开一个章节，前面有了主要内容 -->
-    <section class="skills">
+    <section id='siteSkills' class="skills">
         <!-- 这是个副标题，前面已经有了h1了 -->
         <h2>技能</h2>
         <ol class="clearfix">
@@ -198,7 +198,7 @@
         </ol>
     </section>
 
-    <section class="portfolio">
+    <section id='siteWorks' class="portfolio">
         <h2>作品集</h2>
         <nav>
             <ol class="clearfix">
@@ -262,6 +262,20 @@
             }
         }
 
+        let aTags = document.querySelectorAll('nav.menu > ul > li > a')
+        for (let i = 0; i < aTags.length; i++) {
+            aTags[i].onclick = function (x) {
+                x.preventDefault()
+                let a = x.currentTarget
+                //    a.preventDefault()
+                let href = a.getAttribute('href')
+                //    debugger
+                let element = document.querySelector(href)
+                let top = element.offsetTop
+                window.scrollTo(0, top - 80)
+            }
+
+        }
     </script>
 </body>
 

@@ -24,9 +24,7 @@ a {
     display: block;
     clear: both;
 }
-[data-x].active {
-    outline: 10px solid #D05C60;
-}
+
 ul, ol {
     list-style: none;
 }
@@ -37,6 +35,24 @@ h1, h2, h3, h4, h5, h6 {
 
 /* topNavBar-start */
 
+[data-x].offset {
+    transform: translateY(100px);
+}
+
+[data-x] {
+    transform: translateY(0);
+    transition: all 0.5s;
+}
+
+@keyframes slideUp {
+    0% {
+        transform: translateY(-30px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
 .topNavBar {
     padding: 20px 0;
     position: fixed;
@@ -46,6 +62,7 @@ h1, h2, h3, h4, h5, h6 {
     transition: all 0.5s;
     color: #b7b7b7;
 }
+
 .topNavBar.sticky {
     background: white;
     padding: 10px 0;
@@ -53,6 +70,7 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
     color: #3d4451;
 }
+
 .topNavBar .topNavBar-inner {
     padding: 0 16px;
 }
@@ -70,7 +88,7 @@ h1, h2, h3, h4, h5, h6 {
     padding: 0;
 }
 
-.topNavBar nav > ul > li {
+.topNavBar nav>ul>li {
     float: left;
     margin: 0 17px;
     position: relative;
@@ -87,7 +105,7 @@ h1, h2, h3, h4, h5, h6 {
     position: relative;
 }
 
-.topNavBar nav ul li.active > a::after {
+.topNavBar nav ul li.active>a::after, .topNavBar nav ul li.highlight>a::after {
     content: '';
     display: block;
     position: absolute;
@@ -98,6 +116,7 @@ h1, h2, h3, h4, h5, h6 {
     height: 3px;
     animation: menuSlide 0.3s;
 }
+
 @keyframes menuSlide {
     0% {
         width: 0;
@@ -106,6 +125,7 @@ h1, h2, h3, h4, h5, h6 {
         width: 100%;
     }
 }
+
 .topNavBar .submenu {
     display: none;
     position: absolute;
@@ -116,10 +136,10 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     cursor: pointer;
 }
-.topNavBar li.active > .submenu {
+
+.topNavBar li.active>.submenu {
     display: block;
     animation: submenuSlide .3s;
-    
 }
 
 @keyframes submenuSlide {
@@ -129,12 +149,13 @@ h1, h2, h3, h4, h5, h6 {
     100% {
         margin-right: 0%;
     }
-
 }
-.topNavBar .submenu > li {
+
+.topNavBar .submenu>li {
     white-space: nowrap;
     padding: 5px 10px;
 }
+
 /* nav-end */
 
 /* logo-start */
@@ -360,6 +381,7 @@ section.skills .progressBar {
     background-color: #FAE0E0;
     border-radius: 2px;
     margin: 4px 0 40px;
+    overflow: hidden;
 }
 
 section.skills .progressBar .progress {
@@ -367,6 +389,12 @@ section.skills .progressBar .progress {
     background: #E8676B;
     width: 70%;
     border-radius: 2px;
+    transform: translateX(0);
+    transition: all 1s;
+}
+
+section.skills.offset .progress {
+    transform: translateX(-100%);
 }
 
 /* section-end */
@@ -445,4 +473,3 @@ section.portfolio .works img {
 }
 
 /* section-end */
-

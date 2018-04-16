@@ -40,9 +40,9 @@
 
 <body>
     <!-- 加载动画,把div浮在所有内容的上部，默认展示出来，即active -->
-    <div id="siteWelcome" class="site-welcome active">
+    <!-- <div id="siteWelcome" class="site-welcome active">
         <div class="loading"></div>
-    </div>
+    </div> -->
 
     <!-- topNavBar-start -->
     <div id="topNavBar" class="topNavBar">
@@ -240,51 +240,57 @@
         // 根据元素id,注意这是个hash,通过公用属性，即可完成对文档的某个元素的操作
 
 
-        // 添加延时：3s后才取消加载动画
-        setTimeout(function () {
-            siteWelcome.classList.remove('active')
-        }, 1000)
+        // 添加延时：3s后才取消加载动画,网页速度很快就算了
+        // setTimeout(function () {
+        //     siteWelcome.classList.remove('active')
+        // }, 1000)
 
+        // 添加offset类
+        let specialTags = document.querySelectorAll('[data-x]')
+        for (let i = 0; i < specialTags.length; i++) {
+            specialTags[i].classList.add('offset')
+        }
+        findClosest()
         // 完成导航条的特效：
         window.onscroll = function (TTT) {
             if (window.scrollY > 0) {
                 topNavBar.classList.add('sticky')
-
-                // 便于知道打印的值对应的变量
-                console.log('window.scrollY')
-                console.log(window.scrollY)
-                // 根据属性标记获取被标记的元素
-                let specialTags = document.querySelectorAll('[data-x]')
-                // 遍历
-                let minIndex = 0
-                for (let i = 1; i < specialTags.length; i++) {
-                    console.log('specialTags[i].offsetTop')
-                    console.log(specialTags[i].offsetTop)
-                    // debugger
-                    // 之前的冒泡排序是单个变量的大小比较，现今是差值比较，得到现今位置离滚动条最近的元素
-                    // 如果满足这个条件，则……换一个元素
-                    if (Math.abs(specialTags[i].offsetTop - window.scrollY) <
-                        Math.abs(specialTags[minIndex].offsetTop - window.scrollY)) {
-                        minIndex = i
-                    }
-                    for (let i = 0; i < specialTags.length; i++) {
-                        specialTags[i].classList.remove('active')
-                    }
-                    specialTags[minIndex].classList.add('active')
-                    let id = specialTags[minIndex].id
-                    let a = document.querySelector('a[href="#' + id + '"]')
-                    let li = a.parentNode
-                    let brotherAndMe = li.parentNode.children
-                    for (let i = 0; i < brotherAndMe.length; i++) {
-                        brotherAndMe[i].classList.remove('active')
-                    }
-                    li.classList.add('active')
-                }
             } else {
                 topNavBar.classList.remove('sticky')
             }
+            findClosest()
         }
+        function findClosest() {
+            // 便于知道打印的值对应的变量
+            console.log('window.scrollY')
+            console.log(window.scrollY)
+            // 根据属性标记获取被标记的元素
 
+            // 遍历
+            let specialTags = document.querySelectorAll('[data-x]')
+            let minIndex = 0
+            for (let i = 1; i < specialTags.length; i++) {
+                console.log('specialTags[i].offsetTop')
+                console.log(specialTags[i].offsetTop)
+                // debugger
+                // 之前的冒泡排序是单个变量的大小比较，现今是差值比较，得到现今位置离滚动条最近的元素
+                // 如果满足这个条件，则……换一个元素
+                if (Math.abs(specialTags[i].offsetTop - window.scrollY) <
+                    Math.abs(specialTags[minIndex].offsetTop - window.scrollY)) {
+                    minIndex = i
+                }
+                // minIndex 就是离窗口顶部最近的元素
+                specialTags[minIndex].classList.remove('offset')
+                let id = specialTags[minIndex].id
+                let a = document.querySelector('a[href="#' + id + '"]')
+                let li = a.parentNode
+                let brotherAndMe = li.parentNode.children
+                for (let i = 0; i < brotherAndMe.length; i++) {
+                    brotherAndMe[i].classList.remove('highlight')
+                }
+                li.classList.add('highlight')
+            }
+        }
 
 
         let liTags = document.querySelectorAll('nav.menu > ul > li')

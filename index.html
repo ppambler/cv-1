@@ -95,7 +95,7 @@
         <div class="mask"></div>
     </div>
     <main>
-        <div id='siteAbout' class="userCard">
+        <div data-x id='siteAbout' class="userCard">
             <div class="pictureAndText clearfix">
                 <div class="picture">
                     <img src="img/avatar.jpg" width="299" height="347" alt="头像">
@@ -154,7 +154,7 @@
 
     </main>
     <!-- 另开一个章节，前面有了主要内容 -->
-    <section id='siteSkills' class="skills">
+    <section data-x id='siteSkills' class="skills">
         <!-- 这是个副标题，前面已经有了h1了 -->
         <h2>技能</h2>
         <ol class="clearfix">
@@ -198,7 +198,7 @@
         </ol>
     </section>
 
-    <section id='siteWorks' class="portfolio">
+    <section data-x id='siteWorks' class="portfolio">
         <h2>作品集</h2>
         <nav>
             <ol class="clearfix">
@@ -238,19 +238,54 @@
     <script>
         // 一旦上方标签加载完毕，就执行此段JSdemo,这段demo,跟在控制台写的没啥区别
         // 根据元素id,注意这是个hash,通过公用属性，即可完成对文档的某个元素的操作
+
+
         // 添加延时：3s后才取消加载动画
         setTimeout(function () {
             siteWelcome.classList.remove('active')
-        }, 3000)
+        }, 1000)
 
         // 完成导航条的特效：
         window.onscroll = function (TTT) {
             if (window.scrollY > 0) {
                 topNavBar.classList.add('sticky')
+
+                // 便于知道打印的值对应的变量
+                console.log('window.scrollY')
+                console.log(window.scrollY)
+                // 根据属性标记获取被标记的元素
+                let specialTags = document.querySelectorAll('[data-x]')
+                // 遍历
+                let minIndex = 0
+                for (let i = 1; i < specialTags.length; i++) {
+                    console.log('specialTags[i].offsetTop')
+                    console.log(specialTags[i].offsetTop)
+                    // debugger
+                    // 之前的冒泡排序是单个变量的大小比较，现今是差值比较，得到现今位置离滚动条最近的元素
+                    // 如果满足这个条件，则……换一个元素
+                    if (Math.abs(specialTags[i].offsetTop - window.scrollY) <
+                        Math.abs(specialTags[minIndex].offsetTop - window.scrollY)) {
+                        minIndex = i
+                    }
+                    for (let i = 0; i < specialTags.length; i++) {
+                        specialTags[i].classList.remove('active')
+                    }
+                    specialTags[minIndex].classList.add('active')
+                    let id = specialTags[minIndex].id
+                    let a = document.querySelector('a[href="#' + id + '"]')
+                    let li = a.parentNode
+                    let brotherAndMe = li.parentNode.children
+                    for (let i = 0; i < brotherAndMe.length; i++) {
+                        brotherAndMe[i].classList.remove('active')
+                    }
+                    li.classList.add('active')
+                }
             } else {
                 topNavBar.classList.remove('sticky')
             }
         }
+
+
 
         let liTags = document.querySelectorAll('nav.menu > ul > li')
         for (let i = 0; i < liTags.length; i++) {
@@ -261,6 +296,8 @@
                 x.currentTarget.classList.remove('active')
             }
         }
+
+
 
 
         let aTags = document.querySelectorAll('nav.menu > ul > li > a')
@@ -297,10 +334,6 @@
                         window.scrollTo(0, coords.y)
                     })
                     .start();
-
-
-
-
             }
 
         }

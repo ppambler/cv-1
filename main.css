@@ -24,7 +24,9 @@ a {
     display: block;
     clear: both;
 }
-
+[data-x].active {
+    outline: 10px solid #D05C60;
+}
 ul, ol {
     list-style: none;
 }

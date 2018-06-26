@@ -404,72 +404,38 @@ section.skills.offset .progress {
 section.portfolio {
     text-align: center;
     margin-bottom: 100px;
+    max-width: 720px;
 }
-
-section.portfolio nav ol {
-    /* border: 1px solid red; */
-    display: inline-block;
-    vertical-align: top;
+section.portfolio h2 {
+    margin-bottom: 32px;
 }
+section.portfolio .swiper-container {
+    width: 668px;
+    height: 501px;
 
-section.portfolio nav ol li {
-    float: left;
-    margin-left: 40px;
-    cursor: pointer;
 }
-
-section.portfolio nav ol li:first-child {
-    margin-left: 0;
-}
-
-section.portfolio nav {
-    display: inline-block;
-    vertical-align: top;
-    margin-top: 32px;
-}
-
-section.portfolio>nav .bar {
-    height: 5px;
-    background-color: #fff;
-    margin-top: 5px;
-    margin-bottom: 28px;
-    border-radius: 2px;
-}
-
-section.portfolio>nav .bar-inner {
-    height: 100%;
-    background-color: #E8676B;
-    border-radius: 2px;
-    transition: all 0.5s;
-}
-
-section.portfolio>nav .bar.state-1 .bar-inner {
-    margin-left: 0;
-    width: 50px;
-}
-
-section.portfolio>nav .bar.state-2 .bar-inner {
-    margin-left: 65px;
-    width: 50px;
-}
-
-section.portfolio>nav .bar.state-3 .bar-inner {
-    margin-left: 140px;
-    width: 100px;
-}
-
-section.portfolio .works {
-    position: relative;
-    /* border: 1px solid red; */
-}
-
-section.portfolio .works>.big, section.portfolio .works>.small {
-    position: absolute;
-    box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.5);
-}
-
 section.portfolio .works img {
     vertical-align: top;
 }
-
+section.portfolio .swiper-button-prev,
+section.portfolio .swiper-button-next {
+    /* 这个为background的话，那么就会覆盖那个<箭头，难道是堆叠上下文的缘故？？？ */
+    background-color: white;
+    width: 64px;
+    height: 64px;
+    right: 100%;
+    /* 没有这个会有变化，真不知道的这个有啥用 */
+    left: auto;
+    /* 这个按钮居中 */
+    margin-top: 5px;
+    border-radius: 50%;
+}
+section.portfolio .swiper-button-prev,
+section.portfolio .swiper-button-next:focus {
+    outline: none;
+} 
+section.portfolio .swiper-button-next {
+    left: 100%;
+    right: auto;
+}
 /* section-end */

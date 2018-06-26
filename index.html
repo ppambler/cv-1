@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>唐小桃的个人简历</title>
     <link rel="stylesheet" href="loading.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.3/css/swiper.min.css">
     <link rel="stylesheet" href="main.css">
     <script src="//at.alicdn.com/t/font_586044_hnash3ry74dyrpb9.js"></script>
     <style type="text/css">
@@ -200,41 +201,30 @@
 
     <section data-x id='siteWorks' class="portfolio">
         <h2>作品集</h2>
-        <nav>
-            <ol class="clearfix">
-                <li id="portfolio1">所有</li>
-                <li id="portfolio2">框架</li>
-                <li id="portfolio3">原生 JS&amp;CSS</li>
-            </ol>
-            <div id="portfolioBar" class="bar state-1">
-                <div class="bar-inner"></div>
-            </div>
-        </nav>
-        <script>
-            portfolio1.onclick = function () {
-                portfolioBar.className = 'bar state-1'
-            }
-            portfolio2.onclick = function () {
-                portfolioBar.className = 'bar state-2'
-            }
-            portfolio3.onclick = function () {
-                portfolioBar.className = 'bar state-3'
-            }
-        </script>
         <!-- 这个是做第一页的，针对于所有 -->
-        <div class="works" style="height: 576px;">
-            <div class="big" style="top: 0; left: 0;">
-                <img src="img/1.jpg" alt="作品1">
+        <!-- 把这个做成轮播 -->
+        <!-- Slider main container -->
+        <div class="swiper-container">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+                <!-- Slides -->
+                <img src='./img/works/myBookmarks.jpg' class="swiper-slide">
+                <img src='./img/works/canvas.jpg' class="swiper-slide">
+                <img src='./img/works/slide.jpg' class="swiper-slide">
             </div>
-            <div class="small" style="top: 0; left: 645px;">
-                <img src="img/2.jpg" alt="作品2">
-            </div>
-            <div class="small" style="top: 298px; left: 645px;">
-                <img src="img/3.jpg" alt="作品3">
-            </div>
+            <!-- If we need pagination -->
+            <div class="swiper-pagination"></div>
+
+            <!-- If we need scrollbar -->
+            <!-- <div class="swiper-scrollbar"></div> -->
         </div>
+        <!-- If we need navigation buttons -->
+        <!-- 即便把这个按钮移除外面去依旧能控制 -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
     </section>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/17.2.0/Tween.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.3/js/swiper.min.js"></script>
     <script>
         // 一旦上方标签加载完毕，就执行此段JSdemo,这段demo,跟在控制台写的没啥区别
         // 根据元素id,注意这是个hash,通过公用属性，即可完成对文档的某个元素的操作
@@ -260,6 +250,7 @@
             }
             findClosest()
         }
+
         function findClosest() {
             // 便于知道打印的值对应的变量
             console.log('window.scrollY')
@@ -328,13 +319,19 @@
                 let targetTop = top - 80
                 let s = targetTop - currentTop
 
-                var coords = { y: currentTop }; // Start at (0, 0)
+                var coords = {
+                    y: currentTop
+                }; // Start at (0, 0)
                 // 设行驶100px需要0.3s，回头会变为负像素，即s为负值，于是t也为负，导致t>500,显得很慢，因此需要绝对值  
                 var t = Math.abs((s / 100) * 300)
                 // 如果抵达目的地超过0.5s,那就规定最多在0.5s之内抵达目的地
-                if (t > 500) { t = 500 }
+                if (t > 500) {
+                    t = 500
+                }
                 var tween = new TWEEN.Tween(coords)
-                    .to({ y: targetTop }, t)
+                    .to({
+                        y: targetTop
+                    }, t)
                     .easing(TWEEN.Easing.Quadratic.InOut)
                     .onUpdate(function () {
                         window.scrollTo(0, coords.y)
@@ -343,6 +340,29 @@
             }
 
         }
+    </script>
+    <script>
+        var mySwiper = new Swiper('.swiper-container', {
+            // Optional parameters
+            // direction: 'vertical',
+            loop: true,
+
+            // If we need pagination
+            pagination: {
+                el: '.swiper-pagination',
+            },
+
+            // Navigation arrows
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+
+            // And if we need scrollbar
+            scrollbar: {
+                el: '.swiper-scrollbar',
+            },
+        })
     </script>
 </body>
 

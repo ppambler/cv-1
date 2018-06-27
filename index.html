@@ -13,11 +13,6 @@
 </head>
 
 <body>
-    <!-- 加载动画,把div浮在所有内容的上部，默认展示出来，即active -->
-    <!-- <div id="siteWelcome" class="site-welcome active">
-        <div class="loading"></div>
-    </div> -->
-
     <!-- topNavBar-start -->
     <div id="topNavBar" class="topNavBar">
         <div class="topNavBar-inner clearfix">
@@ -198,145 +193,12 @@
     </section>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/17.2.0/Tween.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.3/js/swiper.min.js"></script>
-    <script>
-        // 一旦上方标签加载完毕，就执行此段JSdemo,这段demo,跟在控制台写的没啥区别
-        // 根据元素id,注意这是个hash,通过公用属性，即可完成对文档的某个元素的操作
-
-
-        // 添加延时：3s后才取消加载动画,网页速度很快就算了
-        // setTimeout(function () {
-        //     siteWelcome.classList.remove('active')
-        // }, 1000)
-
-        // 添加offset类
-        let specialTags = document.querySelectorAll('[data-x]')
-        for (let i = 0; i < specialTags.length; i++) {
-            specialTags[i].classList.add('offset')
-        }
-        findClosest()
-        // 完成导航条的特效：
-        window.onscroll = function (TTT) {
-            if (window.scrollY > 0) {
-                topNavBar.classList.add('sticky')
-            } else {
-                topNavBar.classList.remove('sticky')
-            }
-            findClosest()
-        }
-
-        function findClosest() {
-            // 便于知道打印的值对应的变量
-            console.log('window.scrollY')
-            console.log(window.scrollY)
-            // 根据属性标记获取被标记的元素
-
-            // 遍历
-            let specialTags = document.querySelectorAll('[data-x]')
-            let minIndex = 0
-            for (let i = 1; i < specialTags.length; i++) {
-                console.log('specialTags[i].offsetTop')
-                console.log(specialTags[i].offsetTop)
-                // debugger
-                // 之前的冒泡排序是单个变量的大小比较，现今是差值比较，得到现今位置离滚动条最近的元素
-                // 如果满足这个条件，则……换一个元素
-                if (Math.abs(specialTags[i].offsetTop - window.scrollY) <
-                    Math.abs(specialTags[minIndex].offsetTop - window.scrollY)) {
-                    minIndex = i
-                }
-                // minIndex 就是离窗口顶部最近的元素
-                specialTags[minIndex].classList.remove('offset')
-                let id = specialTags[minIndex].id
-                let a = document.querySelector('a[href="#' + id + '"]')
-                let li = a.parentNode
-                let brotherAndMe = li.parentNode.children
-                for (let i = 0; i < brotherAndMe.length; i++) {
-                    brotherAndMe[i].classList.remove('highlight')
-                }
-                li.classList.add('highlight')
-            }
-        }
-
-
-        let liTags = document.querySelectorAll('nav.menu > ul > li')
-        for (let i = 0; i < liTags.length; i++) {
-            liTags[i].onmouseenter = function (x) {
-                x.currentTarget.classList.add('active')
-            }
-            liTags[i].onmouseleave = function (x) {
-                x.currentTarget.classList.remove('active')
-            }
-        }
-
-
-
-
-        let aTags = document.querySelectorAll('nav.menu > ul > li > a')
-
-        function animate(time) {
-            requestAnimationFrame(animate);
-            TWEEN.update(time);
-        }
-        requestAnimationFrame(animate);
-
-        for (let i = 0; i < aTags.length; i++) {
-            aTags[i].onclick = function (x) {
-                x.preventDefault()
-                let a = x.currentTarget
-                //    a.preventDefault()
-                let href = a.getAttribute('href')
-                //    debugger
-                let element = document.querySelector(href)
-                let top = element.offsetTop
-
-                let currentTop = window.scrollY
-                let targetTop = top - 80
-                let s = targetTop - currentTop
-
-                var coords = {
-                    y: currentTop
-                }; // Start at (0, 0)
-                // 设行驶100px需要0.3s，回头会变为负像素，即s为负值，于是t也为负，导致t>500,显得很慢，因此需要绝对值  
-                var t = Math.abs((s / 100) * 300)
-                // 如果抵达目的地超过0.5s,那就规定最多在0.5s之内抵达目的地
-                if (t > 500) {
-                    t = 500
-                }
-                var tween = new TWEEN.Tween(coords)
-                    .to({
-                        y: targetTop
-                    }, t)
-                    .easing(TWEEN.Easing.Quadratic.InOut)
-                    .onUpdate(function () {
-                        window.scrollTo(0, coords.y)
-                    })
-                    .start();
-            }
-
-        }
-    </script>
-    <script>
-        var mySwiper = new Swiper('.swiper-container', {
-            // Optional parameters
-            // direction: 'vertical',
-            loop: true,
-
-            // If we need pagination
-            pagination: {
-                el: '.swiper-pagination',
-            },
-
-            // Navigation arrows
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-
-            // And if we need scrollbar
-            scrollbar: {
-                el: '.swiper-scrollbar',
-            },
-        })
-    </script>
+    <!-- 模块化：把对应功能放到一个块里，可认为这个块是个div,也可以认为是个文件，
+        反正随你怎么理解，总之这种写法与之前的是不一样的 -->
+    <script src="./js/init-swiper.js"></script>
+    <script src="./js/auto-slide-up.js"></script>
+    <script src="./js/sticky-topbar.js"></script>
+    <script src="./js/smoothly-navigation.js"></script>
 </body>
 
 </html>

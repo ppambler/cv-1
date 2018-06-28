@@ -1,5 +1,7 @@
 !function () {
-    let liTags = document.querySelectorAll('nav.menu > ul > li')
+    var view = document.querySelector('nav.menu')
+    view.style.border = '1px solid red'
+    let liTags = view.querySelectorAll('ul > li')
     for (let i = 0; i < liTags.length; i++) {
         liTags[i].onmouseenter = function (x) {
             x.currentTarget.classList.add('active')

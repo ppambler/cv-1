@@ -169,27 +169,35 @@
 
     <section data-x id='siteWorks' class="portfolio">
         <h2>作品集</h2>
-        <!-- 这个是做第一页的，针对于所有 -->
-        <!-- 把这个做成轮播 -->
-        <!-- Slider main container -->
-        <div class="swiper-container">
-            <!-- Additional required wrapper -->
-            <div class="swiper-wrapper">
-                <!-- Slides -->
-                <img src='./img/works/myBookmarks.jpg' class="swiper-slide">
-                <img src='./img/works/canvas.jpg' class="swiper-slide">
-                <img src='./img/works/slide.jpg' class="swiper-slide">
-            </div>
-            <!-- If we need pagination -->
-            <div class="swiper-pagination"></div>
 
-            <!-- If we need scrollbar -->
-            <!-- <div class="swiper-scrollbar"></div> -->
+        <!-- 这就是view了，即用户看得件的东西 -->
+        <!-- 由于有三个div所以你得要有一个div包裹住它们，之前，那两个按钮是在
+            里面的，不过提出来了而已，这个细节很重要
+        -->
+        <!-- 这个mySlides就是init-swiper.js这个模块的view -->
+        <div id="mySlides"> 
+            <!-- 这个是做第一页的，针对于所有 -->
+            <!-- 把这个做成轮播 -->
+            <!-- Slider main container -->
+            <div class="swiper-container">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                    <!-- Slides -->
+                    <img src='./img/works/myBookmarks.jpg' class="swiper-slide">
+                    <img src='./img/works/canvas.jpg' class="swiper-slide">
+                    <img src='./img/works/slide.jpg' class="swiper-slide">
+                </div>
+                <!-- If we need pagination -->
+                <div class="swiper-pagination"></div>
+
+                <!-- If we need scrollbar -->
+                <!-- <div class="swiper-scrollbar"></div> -->
+            </div>
+            <!-- If we need navigation buttons -->
+            <!-- 即便把这个按钮移除外面去依旧能控制 -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
         </div>
-        <!-- If we need navigation buttons -->
-        <!-- 即便把这个按钮移除外面去依旧能控制 -->
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
     </section>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/17.2.0/Tween.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.3/js/swiper.min.js"></script>

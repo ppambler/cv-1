@@ -26,8 +26,8 @@ function findClosestAndRemoveOffset() {
     let specialTags = document.querySelectorAll('[data-x]')
     let minIndex = 0
     for (let i = 1; i < specialTags.length; i++) {
-        console.log('specialTags[i].offsetTop')
-        console.log(specialTags[i].offsetTop)
+        // console.log('specialTags[i].offsetTop')
+        // console.log(specialTags[i].offsetTop)
         // debugger
         // 之前的冒泡排序是单个变量的大小比较，现今是差值比较，得到现今位置离滚动条最近的元素
         // 如果满足这个条件，则……换一个元素

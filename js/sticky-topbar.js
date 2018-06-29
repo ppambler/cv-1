@@ -1,6 +1,6 @@
 ! function () {
     var view = document.querySelector('#topNavBar')
-    view.style.border = '1px solid red'
+    // view.style.border = '1px solid red'
     var controller = {
         view: null,
         // 这个初始化联想到巴贝奇差分机的运算（参见计算机专业导论）

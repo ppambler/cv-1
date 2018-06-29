@@ -1,6 +1,6 @@
 ! function () {
     var view = document.querySelector('#mySlides')
-    view.style.border = '1px solid red'
+    // view.style.border = '1px solid red'
     // console.dir(view)
 
     var controller = {

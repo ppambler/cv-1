@@ -29,13 +29,13 @@
         },
         init: function (view) {
             this.view = view
-            this.initSwiper(view)
+            this.initSwiper()
         },
-        initSwiper: function (view) {
+        initSwiper: function () {
             // 这里的view.querySelector的用法我是没有想到的，我一直以为它只能
             // 通过document.这样，没想到元素也可以这样
             var mySwiper = new Swiper(
-                view.querySelector('.swiper-container'),
+                this.view.querySelector('.swiper-container'),
                 this.swiperOptions
             )
         }

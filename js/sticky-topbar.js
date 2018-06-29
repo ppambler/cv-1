@@ -13,7 +13,8 @@
             var view = this.view
             // 箭头函数没有this,即你传入一个this值也不会有效果
             // 它只会往上找
-            // 这里监听window是个缺陷
+            // 这里监听window是个缺陷，这意味着这个this的值是scroll的地址
+            // 所以要么你就用bind指明这个this的值，要么你就用箭头函数
             window.addEventListener('scroll', (x) => {
                 if (window.scrollY > 0) {
                     this.active()

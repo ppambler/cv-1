@@ -199,14 +199,27 @@
             <div class="swiper-button-next"></div>
         </div>
     </section>
+
+    <!-- 添加留言 -->
+    <section>
+        <h2>留言</h2>
+        <form id='postMessageForm' style="width: 700px; margin: 50px auto;">
+            <input type="text" name="content" id="">
+            <input type="submit" value="提交">
+        </form>
+    </section>
+
+    <!-- 引入依赖 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/17.2.0/Tween.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.3/js/swiper.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.7.3/dist/av-min.js"></script>
     <!-- 模块化：把对应功能放到一个块里，可认为这个块是个div,也可以认为是个文件，
         反正随你怎么理解，总之这种写法与之前的是不一样的 -->
     <script src="./js/init-swiper.js"></script>
     <script src="./js/auto-slide-up.js"></script>
     <script src="./js/sticky-topbar.js"></script>
     <script src="./js/smoothly-navigation.js"></script>
+    <script src="./js/message.js"></script>
 </body>
 
 </html>

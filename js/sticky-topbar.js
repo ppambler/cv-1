@@ -11,13 +11,23 @@
         },
         bindEvents: function () {
             var view = this.view
-            window.addEventListener('scroll', function (x) {
+            // 箭头函数没有this,即你传入一个this值也不会有效果
+            // 它只会往上找
+            // 这里监听window是个缺陷
+            window.addEventListener('scroll', (x) => {
                 if (window.scrollY > 0) {
-                    view.classList.add('sticky')
+                    this.active()
                 } else {
-                    view.classList.remove('sticky')
+                    this.deactive()
                 }
             })
+        },
+        // 一个函数只做一件事
+        active: function() {
+            this.view.classList.add('sticky')
+        },
+        deactive: function() {
+            this.view.classList.remove('sticky')
         }
 
     }

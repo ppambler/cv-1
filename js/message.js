@@ -14,34 +14,42 @@ AV.init({
 var query = new AV.Query('Message');
 query.find()
   .then(
-    function(message) {
+    function (message) {
       // console.log(message)
       // 这里的map的作用，拿到所需要的内容然后封装成数组,有种过滤的味道
       let array = message.map((item) => item.attributes)
       // console.log(array)
-      array.forEach((item)=>{
+      array.forEach((item) => {
         let li = document.createElement('li')
-        li.innerText = item.content
+        li.innerText = `${item.name}: ${item.content}`
         let messageList = document.querySelector('#messageList')
         messageList.appendChild(li)
       })
     }
   )
-let myForm =document.querySelector('#postMessageForm')
+let myForm = document.querySelector('#postMessageForm')
 // 监听form表单的submit事件
-myForm.addEventListener('submit',function(e) {
-    e.preventDefault()
-    let content = myForm.querySelector('input[name=content]').value
-    console.log(content)
-    var Message = AV.Object.extend('Message')
-    var message = new Message()
-    message.save({
-        'content': content
-    }).then(function(object) {
-        alert('存入成功')
-        window.location.reload()
-        console.log(object)
-    })
+myForm.addEventListener('submit', function (e) {
+  e.preventDefault()
+  let content = myForm.querySelector('input[name=content]').value
+  let name = myForm.querySelector('input[name=name]').value
+
+  console.log(content)
+  var Message = AV.Object.extend('Message')
+  var message = new Message()
+  message.save({
+    'name': name,
+    'content': content
+  }).then(function (object) {
+    // 用户提交后然后就创建元素,不会和查询冲突
+    let li = document.createElement('li')
+    li.innerText = `${object.attributes.name}: ${object.attributes.content}`
+    let messageList = document.querySelector('#messageList')
+    messageList.appendChild(li)
+    // 清空内容
+    myForm.querySelector('input[name=content]').value = ''
+    console.log(object)
+  })
 })
 /*
 // 测试demo

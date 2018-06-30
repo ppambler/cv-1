@@ -6,9 +6,27 @@ AV.init({
   appId: APP_ID,
   appKey: APP_KEY
 });
-console.log('你能看到我吗？能看到的话，那么初始化就成功了，毕竟没有报错')
+// console.log('你能看到我吗？能看到的话，那么初始化就成功了，毕竟没有报错')
 
+// 获取某张表的数据
+// 这里实现JS的两大常用功能，一个是请求和DOM
 
+var query = new AV.Query('Message');
+query.find()
+  .then(
+    function(message) {
+      // console.log(message)
+      // 这里的map的作用，拿到所需要的内容然后封装成数组,有种过滤的味道
+      let array = message.map((item) => item.attributes)
+      // console.log(array)
+      array.forEach((item)=>{
+        let li = document.createElement('li')
+        li.innerText = item.content
+        let messageList = document.querySelector('#messageList')
+        messageList.appendChild(li)
+      })
+    }
+  )
 let myForm =document.querySelector('#postMessageForm')
 // 监听form表单的submit事件
 myForm.addEventListener('submit',function(e) {

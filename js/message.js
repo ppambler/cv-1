@@ -39,6 +39,7 @@ myForm.addEventListener('submit',function(e) {
         'content': content
     }).then(function(object) {
         alert('存入成功')
+        window.location.reload()
         console.log(object)
     })
 })

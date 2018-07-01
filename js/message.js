@@ -1,35 +1,7 @@
 ! function () {
-  var view = document.querySelector('section.message')
-  var model = {  
-    // 初始化数据
-    init: function () {
-      // 初始化demo
-      var APP_ID = '5CggGB6NC7wymcDfvdKuUFDB-gzGzoHsz';
-      var APP_KEY = 'ShdTwSrYm6RyqYguiUeGTkVa';
-
-      AV.init({
-        appId: APP_ID,
-        appKey: APP_KEY
-      })
-
-    },
-    // 获取数据
-    fetch: function () {
-      var query = new AV.Query('Message');
-      // Promise对象
-      return query.find()
-    },
-    // 创建数据,别忘了传入两个形参哦！！！
-    save: function (name,content) {
-      var Message = AV.Object.extend('Message')
-      var message = new Message()
-      // 这里同样是个Promise对象，可见Promise的好处
-      return message.save({
-        'name': name,
-        'content': content
-      })
-    }
-  }
+  var view = View('section.message')
+  var model = Model({resourceName:'Message'})
+ 
   var controller = {
     view: null,
     model: null,
@@ -80,7 +52,10 @@
       let content = myForm.querySelector('input[name=content]').value
       let name = myForm.querySelector('input[name=name]').value
       // console.log(content)
-      this.model.save(name,content).then(function (object) {
+      this.model.save({
+        'name' : name,
+        'content': content
+      }).then(function (object) {
         // 用户提交后然后就创建元素,不会和查询冲突
         let li = document.createElement('li')
         li.innerText = `${object.attributes.name}: ${object.attributes.content}`

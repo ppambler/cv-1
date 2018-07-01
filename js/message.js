@@ -1,20 +1,16 @@
 ! function () {
   var view = View('section.message')
+
   var model = Model({resourceName:'Message'})
- 
-  var controller = {
-    view: null,
-    model: null,
-    messageList: null,
+
+  var controller = Controller({
+    messageList:null,
     form: null,
     init: function (view, model) {
-      this.view = view
-      this.model = model
+      // 这3个家伙是特殊的，这就是为什么在写模板的时候会有个遍历对象
       this.messageList = view.querySelector('#messageList')
       this.form = view.querySelector('form')
-      this.model.init()
       this.loadMessages()
-      this.bindEvents()
     },
     loadMessages: function () {
       // 获取某张表的数据
@@ -66,7 +62,8 @@
         // console.log(object)
       })
     }
-  }
 
+  })
+ 
   controller.init(view,model)
 }.call()

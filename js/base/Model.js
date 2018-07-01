@@ -6,6 +6,12 @@
 // 没有这个Model,你就需要写很多遍的类似的demo，而现在用了这个就不需要了
 // 你只需要 var model1 = Model({resourceName:'xxx'});var model2 = Model({rescourceName:'yyy'})
 // 只要是其它模块必须要的操作，就可以弄成模板，假如其它模块的Model需要的功能更多的话，比如删除等操作啊，那就需要继承了
+
+/*
+var model = Model({
+  resourceName: '表名'
+})
+*/
 window.Model = function (options) {
     // 这里用到了闭包，这个局部变量被fetch和save函数内部的家伙引用了
     let resourceName = options.resourceName

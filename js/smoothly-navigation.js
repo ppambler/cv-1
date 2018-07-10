@@ -20,7 +20,7 @@
             }
             requestAnimationFrame(animate);
         },
-        scrollToElement: function () {
+        scrollToElement: function (element) {
             let top = element.offsetTop
 
             let currentTop = window.scrollY
@@ -49,13 +49,14 @@
         bindEvents: function () {
             this.aTags = this.view.querySelectorAll('ul > li > a')
             for (let i = 0; i < this.aTags.length; i++) {
-                this.aTags[i].onclick = function (x) {
+                this.aTags[i].onclick = (x)=> {
                     x.preventDefault()
                     let a = x.currentTarget
                     //    a.preventDefault()
                     let href = a.getAttribute('href')
                     //    debugger
                     let element = document.querySelector(href)
+                    this.scrollToElement(element)
                 }
             }
         },

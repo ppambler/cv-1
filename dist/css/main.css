@@ -1,0 +1,383 @@
+@charset "UTF-8";
+body {
+  background: #efefef;
+  margin: 0; }
+
+* {
+  margin: 0;
+  padding: 0; }
+
+hr {
+  height: 0;
+  border: none;
+  border-top: 1px solid #DEDEDE; }
+
+a {
+  text-decoration: none;
+  color: inherit; }
+
+.clearfix::after {
+  content: '';
+  display: block;
+  clear: both; }
+
+ul, ol {
+  list-style: none; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal; }
+
+/* topNavBar-start */
+[data-x].offset {
+  transform: translateY(100px); }
+
+[data-x] {
+  transform: translateY(0);
+  transition: all 0.5s; }
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(-30px); }
+  100% {
+    transform: translateY(0); } }
+
+.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden; }
+
+.topNavBar {
+  padding: 20px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  transition: all 0.5s;
+  color: #b7b7b7; }
+
+.topNavBar.sticky {
+  background: white;
+  padding: 10px 0;
+  z-index: 1;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  color: #3d4451; }
+
+.topNavBar .topNavBar-inner {
+  padding: 0 16px; }
+
+/* nav-start */
+.topNavBar nav {
+  padding-top: 5px;
+  float: right; }
+
+.topNavBar nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+
+.topNavBar nav > ul > li {
+  float: left;
+  margin: 0 17px;
+  position: relative; }
+
+.topNavBar nav ul li a {
+  font-size: 12px;
+  color: inherit;
+  font-weight: bold;
+  border-top: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+  padding: 5px 0;
+  display: block;
+  position: relative; }
+
+.topNavBar nav ul li.active > a::after, .topNavBar nav ul li.highlight > a::after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: #e06567;
+  height: 3px;
+  animation: menuSlide 0.3s; }
+
+@keyframes menuSlide {
+  0% {
+    width: 0; }
+  100% {
+    width: 100%; } }
+
+.topNavBar .submenu {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background: white;
+  color: #3d4451;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  cursor: pointer; }
+
+.topNavBar li.active > .submenu {
+  display: block;
+  animation: submenuSlide .3s; }
+
+@keyframes submenuSlide {
+  0% {
+    margin-right: 100%; }
+  100% {
+    margin-right: 0%; } }
+
+.topNavBar .submenu > li {
+  white-space: nowrap;
+  padding: 5px 10px; }
+
+/* nav-end */
+/* logo-start */
+.topNavBar .logo {
+  float: left;
+  font-size: 24px;
+  font-family: 'Arial Black';
+  padding: 3px 0 4px 0; }
+
+.topNavBar .logo .rs {
+  margin-right: 4px;
+  color: #e6686a; }
+
+.topNavBar .logo .card {
+  color: #9a9da2; }
+
+/* logo-end */
+/* topNavBar-end */
+/* banner-start */
+.banner {
+  height: 515px;
+  background-image: url(../img/rs-cover.jpg);
+  background-position: center center;
+  background-size: cover; }
+
+.banner .mask {
+  /* 宽度自适应 */
+  height: 515px;
+  background-color: rgba(0, 0, 0, 0.8); }
+
+/* banner-end */
+/* main-start */
+.userCard {
+  max-width: 940px;
+  margin: 0 auto;
+  background-color: #fff;
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.5); }
+
+.userCard .welcome {
+  background-color: #E8676B;
+  color: #FFF;
+  display: inline-block;
+  padding: 4px 16px;
+  line-height: 21px;
+  position: relative;
+  margin-bottom: 10px; }
+
+.userCard .welcome .triangle {
+  /* 为了让span变成div */
+  display: block;
+  border: 10px solid transparent;
+  width: 0;
+  border-left-color: #E8676B;
+  border-top-width: 0px;
+  position: absolute;
+  left: 4px;
+  top: 100%; }
+
+.userCard .text {
+  float: left;
+  margin-left: 65px;
+  width: 470px; }
+
+.userCard .text h1 {
+  margin-top: 18px; }
+
+.userCard .text hr {
+  margin: 20px 0; }
+
+.userCard .picture {
+  float: left; }
+
+.userCard .pictureAndText {
+  padding: 50px; }
+
+.userCard dl dt, .userCard dl dd {
+  float: left;
+  padding: 5px 0; }
+
+.userCard dl dt {
+  width: 30%;
+  font-weight: bold; }
+
+.userCard dl dd {
+  width: 70%;
+  color: #9da0a7; }
+
+.userCard .media {
+  text-align: center;
+  background-color: #E8676B; }
+
+.userCard .media a {
+  display: inline-block;
+  width: 40px;
+  line-height: 30px;
+  padding: 5px 0;
+  border-radius: 50%;
+  margin: 16px; }
+
+.userCard .media a:hover {
+  background-color: #D05C60; }
+
+.userCard .media svg {
+  width: 30px;
+  height: 30px;
+  fill: white;
+  vertical-align: top; }
+
+body main {
+  margin-top: -340px; }
+
+/* download-start */
+body main .downloadResume-wrapper {
+  text-align: center; }
+
+body main .downloadResume {
+  font-size: 14px;
+  line-height: 16px;
+  padding: 21px 55px;
+  display: inline-block;
+  background-color: #efefef;
+  border-radius: 2px;
+  color: #3d4451;
+  font-weight: bold;
+  margin: 32px 0;
+  transition: box-shadow 0.2s;
+  border: 1px solid #CBCDCF; }
+
+body main .downloadResume:hover {
+  box-shadow: 0px 4px 10px 1px rgba(0, 0, 0, 0.2); }
+
+/* download-end */
+/* self-introduction-start */
+.selfIntroduction {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-size: 18px;
+  line-height: 1.8em;
+  font-family: kaiti; }
+
+/* self-introduction-end */
+/* main-end */
+/* section-start */
+section.skills, section.portfolio {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px; }
+
+section.skills h2, section.portfolio h2, section.message h2 {
+  text-align: center;
+  color: #3d4451;
+  font-size: 34px;
+  line-height: 1.2;
+  font-weight: 600; }
+
+section.skills h3 {
+  font-size: 14px;
+  line-height: 1.1;
+  padding-right: 40px; }
+
+section.skills ol {
+  background-color: #fff;
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.5);
+  padding: 42px 50px 10px;
+  margin-top: 30px; }
+
+section.skills ol li {
+  float: left;
+  width: 48%;
+  box-sizing: border-box; }
+
+section.skills ol li:nth-child(even) {
+  float: right; }
+
+section.skills .progressBar {
+  height: 5px;
+  background-color: #FAE0E0;
+  border-radius: 2px;
+  margin: 4px 0 40px;
+  overflow: hidden; }
+
+section.skills .progressBar .progress {
+  height: 100%;
+  background: #E8676B;
+  width: 70%;
+  border-radius: 2px;
+  transform: translateX(0);
+  transition: all 1s; }
+
+section.skills.offset .progress {
+  transform: translateX(-100%); }
+
+/* section-end */
+/* section-start */
+section.portfolio {
+  text-align: center;
+  margin-bottom: 100px;
+  max-width: 720px; }
+
+section.portfolio h2 {
+  margin-bottom: 32px; }
+
+section.portfolio .swiper-container {
+  width: 668px;
+  height: 501px; }
+
+section.portfolio .works img {
+  vertical-align: top; }
+
+section.portfolio .swiper-button-prev,
+section.portfolio .swiper-button-next {
+  /* 这个为background的话，那么就会覆盖那个<箭头，难道是堆叠上下文的缘故？？？ */
+  background-color: white;
+  width: 64px;
+  height: 64px;
+  right: 100%;
+  /* 没有这个会有变化，真不知道的这个有啥用 */
+  left: auto;
+  /* 这个按钮居中 */
+  margin-top: 5px;
+  border-radius: 50%; }
+
+section.portfolio .swiper-button-prev,
+section.portfolio .swiper-button-next:focus {
+  outline: none; }
+
+section.portfolio .swiper-button-next {
+  left: 100%;
+  right: auto; }
+
+/* section-end */
+/* section.message-start */
+section.message > ol {
+  max-width: 700px;
+  margin: 0 auto;
+  border-top: 1px solid #ddd; }
+
+section.message > ol > li {
+  padding: 16px;
+  border-bottom: 1px solid #ddd; }
+
+section.message > #postMessageForm {
+  width: 700px;
+  margin: 50px auto; }
+
+/* section.message-end */
